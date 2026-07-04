@@ -1245,8 +1245,8 @@ export default function Page() {
                 <label htmlFor="inCity">
                   City <em>*</em>
                 </label>
-                <select id="inCity" name="city">
-                  <option value="" selected disabled>
+                <select id="inCity" name="city" defaultValue="">
+                  <option value="" disabled>
                     Select your city
                   </option>
                   <option>Islamabad</option>
@@ -1294,7 +1294,7 @@ export default function Page() {
                   name="chai"
                   id="chai1"
                   value="Doodh Patti"
-                  checked
+                  defaultChecked
                 />
                 <label htmlFor="chai1">Doodh Patti</label>
                 <input type="radio" name="chai" id="chai2" value="Karak Chai" />
