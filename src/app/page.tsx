@@ -78,7 +78,6 @@ export default function Page() {
         var city = document.getElementById("inCity").value;
         var address = document.getElementById("inAddress").value.trim();
         var consent = document.getElementById("inConsent").checked;
-        var chai = document.querySelector('input[name="chai"]:checked').value;
         var pack = packSelect.value;
 
         var ok = true;
@@ -118,9 +117,7 @@ export default function Page() {
           "\nAddress: " +
           address +
           "\nPack: " +
-          pack +
-          "\nChai style: " +
-          chai;
+          pack;
         document.getElementById("waConfirm").href =
           "https://wa.me/923098665556?text=" + encodeURIComponent(msg);
 
@@ -1277,23 +1274,7 @@ export default function Page() {
               </span>
             </div>
 
-            <div className="field">
-              <label>How do you take your chai?</label>
-              <div className="chip-group">
-                <input
-                  type="radio"
-                  name="chai"
-                  id="chai1"
-                  value="Doodh Patti"
-                  defaultChecked
-                />
-                <label htmlFor="chai1">Doodh Patti</label>
-                <input type="radio" name="chai" id="chai2" value="Karak Chai" />
-                <label htmlFor="chai2">Karak Chai</label>
-                <input type="radio" name="chai" id="chai3" value="Black Tea" />
-                <label htmlFor="chai3">Black Tea</label>
-              </div>
-            </div>
+
 
             <div className="consent-wrap" id="f-consent">
               <div className="consent">
