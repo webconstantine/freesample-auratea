@@ -220,10 +220,10 @@ export default function Page() {
             >
               Aura Tea
             </a>
-            <a className="nav-link" href="#story">
+            <a className="nav-link" href="https://aurapremiumtea.com/">
               Our Story
             </a>
-            <a className="nav-link" href="#packages">
+            <a className="nav-link" href="https://aurapremiumtea.com/">
               Packages
             </a>
           </nav>
@@ -238,10 +238,10 @@ export default function Page() {
             />
           </a>
           <div className="nav-group right">
-            <a className="nav-link" href="#reviews">
+            <a className="nav-link" href="https://aurapremiumtea.com/">
               Reviews
             </a>
-            <a className="nav-link" href="#faq">
+            <a className="nav-link" href="https://aurapremiumtea.com/">
               FAQ
             </a>
             <button className="btn btn-gold header-cta" data-open-drawer>
