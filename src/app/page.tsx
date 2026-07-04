@@ -1251,12 +1251,6 @@ export default function Page() {
                   </option>
                   <option>Islamabad</option>
                   <option>Rawalpindi</option>
-                  <option>Lahore</option>
-                  <option>Karachi</option>
-                  <option>Faisalabad</option>
-                  <option>Multan</option>
-                  <option>Peshawar</option>
-                  <option>Other</option>
                 </select>
                 <span className="err">Please select your city.</span>
               </div>
@@ -1264,9 +1258,6 @@ export default function Page() {
                 <label htmlFor="inPack">Pack to Sample</label>
                 <select id="inPack" name="pack">
                   <option>Daily Aura 85G</option>
-                  <option>Aura Premium Tea 170G</option>
-                  <option>Aura Premium Tea 430G</option>
-                  <option>Aura Premium Tea 900G</option>
                 </select>
               </div>
             </div>
