@@ -77,8 +77,21 @@ export default function Page() {
         var email = document.getElementById("inEmail").value.trim();
         var city = document.getElementById("inCity").value;
         var address = document.getElementById("inAddress").value.trim();
-        var consent = document.getElementById("inConsent").checked;
+        var consent1 = document.getElementById("inConsent1").checked;
+        var consent2 = document.getElementById("inConsent2").checked;
         var pack = packSelect.value;
+
+        var buyFromRadios = document.getElementsByName("buyFrom");
+        var buyFrom = "";
+        for (var i = 0; i < buyFromRadios.length; i++) {
+          if (buyFromRadios[i].checked) buyFrom = buyFromRadios[i].value;
+        }
+
+        var mattersCheckboxes = document.getElementsByName("mattersMost");
+        var mattersMost = [];
+        for (var i = 0; i < mattersCheckboxes.length; i++) {
+          if (mattersCheckboxes[i].checked) mattersMost.push(mattersCheckboxes[i].value);
+        }
 
         var ok = true;
         ok = setInvalid("f-name", name.length < 3) && ok;
@@ -87,10 +100,14 @@ export default function Page() {
         ok = setInvalid("f-email", email !== "" && !emailRe.test(email)) && ok;
         ok = setInvalid("f-city", city === "") && ok;
         ok = setInvalid("f-address", address.length < 10) && ok;
-        ok = setInvalid("f-consent", !consent) && ok;
+        ok = setInvalid("f-buyFrom", buyFrom === "") && ok;
+        ok = setInvalid("f-mattersMost", mattersMost.length === 0 || mattersMost.length > 2) && ok;
+        ok = setInvalid("f-consent1", !consent1) && ok;
+        ok = setInvalid("f-consent2", !consent2) && ok;
+
         if (!ok) {
           var firstBad = document.querySelector(
-            ".field.invalid input, .field.invalid select, .field.invalid textarea",
+            ".field.invalid input, .field.invalid select, .field.invalid textarea, .consent-wrap.invalid input",
           );
           if (firstBad) {
             firstBad.focus();
@@ -117,9 +134,34 @@ export default function Page() {
           "\nAddress: " +
           address +
           "\nPack: " +
-          pack;
+          pack +
+          "\nBuy From: " + buyFrom +
+          "\nMatters Most: " + mattersMost.join(", ");
         document.getElementById("waConfirm").href =
           "https://wa.me/923098665556?text=" + encodeURIComponent(msg);
+
+        // Submit to Google Sheet via Apps Script Webhook
+        var scriptUrl = "https://script.google.com/macros/s/AKfycbw_mrPK_svRYMaNcbxhZXe9CUxHpRF3DpF_Zy4fElDJOFyciDW1RvCQeftqKhr7WQCLog/exec";
+        if (scriptUrl) {
+          var formData = new URLSearchParams();
+          formData.append("reference", ref);
+          formData.append("name", name);
+          formData.append("phone", phone);
+          formData.append("email", email);
+          formData.append("city", city);
+          formData.append("Pack", pack);
+          formData.append("Address", address);
+          formData.append("BuyFrom", buyFrom);
+          formData.append("MatterMost", mattersMost.join(", "));
+          
+          fetch(scriptUrl, {
+            method: "POST",
+            body: formData,
+            mode: "no-cors"
+          }).catch(function(e) {
+            console.error("Error submitting to sheet", e);
+          });
+        }
 
         form.style.display = "none";
         successBox.classList.add("show");
@@ -1274,14 +1316,72 @@ export default function Page() {
               </span>
             </div>
 
+            <div className="field" id="f-buyFrom">
+              <label>
+                4. Where do you usually buy tea? <em>*</em>
+              </label>
+              <div className="chip-group" id="inBuyFrom">
+                <input type="radio" id="buyStore" name="buyFrom" value="Local grocery store" />
+                <label htmlFor="buyStore">Local grocery store</label>
 
+                <input type="radio" id="buySupermarket" name="buyFrom" value="Supermarket" />
+                <label htmlFor="buySupermarket">Supermarket</label>
 
-            <div className="consent-wrap" id="f-consent">
+                <input type="radio" id="buyCash" name="buyFrom" value="Cash & Carry" />
+                <label htmlFor="buyCash">Cash & Carry</label>
+
+                <input type="radio" id="buyOnline" name="buyFrom" value="Online" />
+                <label htmlFor="buyOnline">Online</label>
+              </div>
+              <span className="err">Please select an option.</span>
+            </div>
+
+            <div className="field" id="f-mattersMost">
+              <label>
+                6. What matters most when choosing tea? (Select up to 2) <em>*</em>
+              </label>
+              <div className="chip-group" id="inMattersMost">
+                <input type="checkbox" id="matTaste" name="mattersMost" value="Strong taste" />
+                <label htmlFor="matTaste">Strong taste</label>
+
+                <input type="checkbox" id="matAroma" name="mattersMost" value="Aroma" />
+                <label htmlFor="matAroma">Aroma</label>
+
+                <input type="checkbox" id="matColour" name="mattersMost" value="Colour" />
+                <label htmlFor="matColour">Colour</label>
+
+                <input type="checkbox" id="matPrice" name="mattersMost" value="Price" />
+                <label htmlFor="matPrice">Price</label>
+
+                <input type="checkbox" id="matBrand" name="mattersMost" value="Brand reputation" />
+                <label htmlFor="matBrand">Brand reputation</label>
+
+                <input type="checkbox" id="matPurity" name="mattersMost" value="Purity" />
+                <label htmlFor="matPurity">Purity</label>
+
+                <input type="checkbox" id="matHealth" name="mattersMost" value="Health" />
+                <label htmlFor="matHealth">Health</label>
+
+                <input type="checkbox" id="matValue" name="mattersMost" value="Value for money" />
+                <label htmlFor="matValue">Value for money</label>
+              </div>
+              <span className="err">Please select 1 or 2 options.</span>
+            </div>
+
+            <div className="consent-wrap" id="f-consent1">
               <div className="consent">
-                <input type="checkbox" id="inConsent" />
-                <label htmlFor="inConsent">
-                  I agree to be contacted on WhatsApp by the Aura Tea team to
-                  confirm my free sample reservation.
+                <input type="checkbox" id="inConsent1" />
+                <label htmlFor="inConsent1">
+                  I understand this offer is limited to one free sample per household/address.
+                </label>
+              </div>
+            </div>
+
+            <div className="consent-wrap" id="f-consent2">
+              <div className="consent">
+                <input type="checkbox" id="inConsent2" />
+                <label htmlFor="inConsent2">
+                  I agree that Aura Tea may contact me for feedback about the sample.
                 </label>
               </div>
             </div>
