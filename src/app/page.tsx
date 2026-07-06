@@ -148,11 +148,11 @@ export default function Page() {
         var scriptUrl = "https://script.google.com/macros/s/AKfycbw_mrPK_svRYMaNcbxhZXe9CUxHpRF3DpF_Zy4fElDJOFyciDW1RvCQeftqKhr7WQCLog/exec";
         if (scriptUrl) {
           var formData = new URLSearchParams();
-          formData.append("reference", ref);
-          formData.append("name", name);
-          formData.append("phone", phone);
-          formData.append("email", email);
-          formData.append("city", city);
+          formData.append("Reference", ref);
+          formData.append("Name", name);
+          formData.append("Phone", phone);
+          formData.append("Email", email);
+          formData.append("City", city);
           formData.append("Pack", pack);
           formData.append("Address", address);
           formData.append("BuyFrom", buyFrom);
