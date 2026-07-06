@@ -156,14 +156,14 @@ export default function Page() {
           formData.append("Pack", pack);
           formData.append("Address", address);
           formData.append("BuyFrom", buyFrom);
-          formData.append("CurrentBrand", currentBrand);
+          formData.append("Brand Use *", currentBrand);
           formData.append("MatterMost", mattersMost.join(", "));
-          
+
           fetch(scriptUrl, {
             method: "POST",
             body: formData,
             mode: "no-cors"
-          }).catch(function(e) {
+          }).catch(function (e) {
             console.error("Error submitting to sheet", e);
           });
         }
