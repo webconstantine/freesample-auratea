@@ -87,6 +87,8 @@ export default function Page() {
           if (buyFromRadios[i].checked) buyFrom = buyFromRadios[i].value;
         }
 
+        var currentBrand = document.getElementById("inCurrentBrand").value.trim();
+
         var mattersCheckboxes = document.getElementsByName("mattersMost");
         var mattersMost = [];
         for (var i = 0; i < mattersCheckboxes.length; i++) {
@@ -101,6 +103,7 @@ export default function Page() {
         ok = setInvalid("f-city", city === "") && ok;
         ok = setInvalid("f-address", address.length < 10) && ok;
         ok = setInvalid("f-buyFrom", buyFrom === "") && ok;
+        ok = setInvalid("f-currentBrand", currentBrand === "") && ok;
         ok = setInvalid("f-mattersMost", mattersMost.length === 0 || mattersMost.length > 2) && ok;
         ok = setInvalid("f-consent1", !consent1) && ok;
         ok = setInvalid("f-consent2", !consent2) && ok;
@@ -136,6 +139,7 @@ export default function Page() {
           "\nPack: " +
           pack +
           "\nBuy From: " + buyFrom +
+          "\nCurrent Brand: " + currentBrand +
           "\nMatters Most: " + mattersMost.join(", ");
         document.getElementById("waConfirm").href =
           "https://wa.me/923098665556?text=" + encodeURIComponent(msg);
@@ -152,6 +156,7 @@ export default function Page() {
           formData.append("Pack", pack);
           formData.append("Address", address);
           formData.append("BuyFrom", buyFrom);
+          formData.append("CurrentBrand", currentBrand);
           formData.append("MatterMost", mattersMost.join(", "));
           
           fetch(scriptUrl, {
@@ -484,14 +489,14 @@ export default function Page() {
                   />
                 </div>
                 <div className="pack-body">
-                  <h3>Daily Aura, 85G</h3>
+                  <h3>Daily Aura</h3>
                   <div className="pack-price">
                     <span className="price-now">Free Sample</span>
                   </div>
                   <button
                     className="btn btn-dark"
                     data-open-drawer
-                    data-pack="Daily Aura 85G"
+                    data-pack="Daily Aura"
                   >
                     Sample This Pack
                   </button>
@@ -1296,7 +1301,7 @@ export default function Page() {
               <div className="field" id="f-pack">
                 <label htmlFor="inPack">Pack to Sample</label>
                 <select id="inPack" name="pack">
-                  <option>Daily Aura 85G</option>
+                  <option>Daily Aura</option>
                 </select>
               </div>
             </div>
@@ -1334,6 +1339,19 @@ export default function Page() {
                 <label htmlFor="buyOnline">Online</label>
               </div>
               <span className="err">Please select an option.</span>
+            </div>
+
+            <div className="field" id="f-currentBrand">
+              <label htmlFor="inCurrentBrand">
+                5. Which tea brand do you currently use ? <em>*</em>
+              </label>
+              <input
+                type="text"
+                id="inCurrentBrand"
+                name="currentBrand"
+                placeholder="e.g. Lipton, Tapal"
+              />
+              <span className="err">Please enter your current tea brand.</span>
             </div>
 
             <div className="field" id="f-mattersMost">
