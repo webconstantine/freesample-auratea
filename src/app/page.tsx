@@ -156,7 +156,7 @@ export default function Page() {
           formData.append("Pack", pack);
           formData.append("Address", address);
           formData.append("BuyFrom", buyFrom);
-          formData.append("5. Which tea brand do you currently use ? *", currentBrand);
+          formData.append("Brand", currentBrand);
           formData.append("MatterMost", mattersMost.join(", "));
 
           fetch(scriptUrl, {
