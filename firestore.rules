@@ -2,7 +2,7 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /samples/{docId} {
+    match /freesample/{docId} {
       allow read: if request.auth != null;
       allow create: if true;
       allow update, delete: if request.auth != null;

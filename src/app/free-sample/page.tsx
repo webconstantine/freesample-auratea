@@ -87,7 +87,7 @@ export default function FreeSample() {
     }
 
     try {
-      await addDoc(collection(db, "samples"), payload)
+      await addDoc(collection(db, "freesample"), payload)
     } catch (err) {
       console.error("Firestore save error:", err)
     }
