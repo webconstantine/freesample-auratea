@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURA Tea – Pakistan's Favorite | 100% Pure | Premium Tea</title>
+<meta name="description" content="Premium unblended tea crafted for pure flavor and natural richness. Antioxidant packed and additive free, experience luxury in every sip">
+<meta name="theme-color" content="#f5f1eb">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f5f1eb;
+    --cream-2:#efe8dd;
+    /* brand burgundy/maroon (kept under --green names so every reference updates) */
+    --green:#54100f;
+    --green-2:#6e1a19;
+    --maroon-text:#510a2f;
+    --gold:#b48f42;
+    --gold-2:#d5bb76;
+    --ink:#2f221f;
+    --muted:#6b5a54;
+    --line:#e5dccb;
+    --white:#ffffff;
+    --rose-1:#f7dfe4;
+    --rose-2:#f2ccd5;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;height:100%}
+  body{font-family:'Jost',sans-serif;color:var(--ink);background:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased;min-height:100%}
+  a{text-decoration:none;color:inherit}
+  img{display:block;max-width:100%}
+  .serif{font-family:'Cormorant Garamond',serif}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:500}
+  .divider{width:70px;height:2px;background:var(--gold);margin:18px 0;border:none}
+  .divider.center{margin-left:auto;margin-right:auto}
+
+  /* Fixed top group (announcement + header) */
+  .top-group{position:fixed;top:0;left:0;right:0;z-index:60}
+  .topbar{background:var(--green);color:#efe1cf;text-align:center;font-size:12px;letter-spacing:.24em;text-transform:uppercase;padding:9px 16px}
+  header.site{background:var(--cream);border-bottom:1px solid var(--line);transition:.3s}
+  .nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;padding:14px 0}
+  .nav-left,.nav-right{display:flex;align-items:center;gap:22px}
+  .nav-right{justify-content:flex-end}
+  .nav a.link{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);font-weight:500;transition:color .2s}
+  .nav a.link:hover{color:var(--gold)}
+  .brand{display:flex;justify-content:center}
+  .brand img{height:48px;width:auto}
+  .icons{display:flex;align-items:center;gap:16px}
+  .icons a{display:flex;align-items:center}
+  .icons svg{width:20px;height:20px;stroke:var(--green);fill:none;stroke-width:1.5;transition:stroke .3s}
+  .icons svg:hover{stroke:var(--gold)}
+  .pill{background:var(--green);color:#fff !important;padding:6px 13px;border-radius:40px;font-size:12px;letter-spacing:.05em}
+  .burger{display:none;background:none;border:none;cursor:pointer}
+  .burger svg{width:24px;height:24px;stroke:var(--green);stroke-width:1.6;fill:none}
+  
+  .desktop-only{display:inline-flex}
+  .mobile-only{display:none}
+
+  /* Slide Drawer Menu */
+  .drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);opacity:0;visibility:hidden;transition:all 0.3s ease;z-index:99}
+  .drawer-overlay.open{opacity:1;visibility:visible}
+  .drawer{position:fixed;top:0;left:0;bottom:0;width:300px;background:var(--cream);box-shadow:4px 0 30px rgba(0,0,0,0.15);z-index:100;transform:translateX(-100%);transition:transform 0.3s ease;padding:24px;display:flex;flex-direction:column;gap:30px}
+  .drawer.open{transform:translateX(0)}
+  .drawer-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:16px}
+  .drawer-title{font-size:16px;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);font-weight:600}
+  .drawer-close{background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .drawer-close svg{width:24px;height:24px;stroke:var(--green);stroke-width:1.8}
+  .drawer-links{display:flex;flex-direction:column;gap:18px}
+  .drawer-links a{font-size:15px;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);font-weight:500;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05);transition:color 0.2s}
+  .drawer-links a:hover{color:var(--gold)}
+
+  .btn{display:inline-block;font-size:13px;letter-spacing:.18em;text-transform:uppercase;padding:15px 34px;border-radius:2px;font-weight:500;transition:.25s;cursor:pointer}
+  .btn-solid{background:var(--green);color:#fff;border:1px solid var(--green)}
+  .btn-solid:hover{background:var(--gold);border-color:var(--gold)}
+  .btn-outline{background:transparent;color:var(--green);border:1px solid var(--green)}
+  .btn-outline:hover{background:var(--green);color:#fff}
+
+  /* HERO */
+  .hero{position:relative;height:100vh;overflow:hidden;background:#1a1208}
+  .hero-bg{width:100%;height:100vh;object-fit:cover;display:block}
+
+  /* Story hero */
+  .story-hero{padding:90px 0 80px}
+  .story-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}
+  .story-hero h2{font-size:clamp(38px,5vw,60px);line-height:1.08;font-weight:600;color:var(--green);margin:14px 0 8px}
+  .story-hero p{color:var(--muted);margin:16px 0;max-width:52ch}
+  .story-hero blockquote{border-left:3px solid var(--gold);padding:6px 0 6px 22px;margin:22px 0;font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:var(--green)}
+  .story-media{position:relative}
+  .story-media img{width:100%;height:560px;object-fit:cover;border-radius:4px;box-shadow:0 30px 60px -30px rgba(84,16,15,.5)}
+  .media-tag{position:absolute;left:22px;bottom:22px;background:rgba(84,16,15,.9);color:#efe1cf;padding:8px 16px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;border-radius:2px}
+
+  /* Video band */
+  .video-band{background:var(--green);padding:80px 0;text-align:center;color:#fff}
+  .video-band .eyebrow{color:var(--gold-2)}
+  .video-band h2{font-size:clamp(36px,5vw,64px);font-weight:600;margin:14px 0 8px;line-height:1.05}
+  .video-band h2 em{font-style:italic;color:var(--gold-2)}
+  .video-band p{color:#e6d8c6;margin-bottom:40px}
+  .video-frame{max-width:100%;margin:0 auto;border-radius:14px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.12)}
+  .video-frame video{width:100%;display:block;aspect-ratio:16/10;object-fit:cover;background:#000}
+
+  /* Sections */
+  .section{padding:88px 0}
+  .section.alt{background:var(--cream-2)}
+  .sec-head{text-align:center;max-width:760px;margin:0 auto 50px}
+  .sec-head h2{font-size:clamp(30px,4.2vw,50px);color:var(--green);font-weight:600;line-height:1.1}
+  .sec-head h2 em{font-style:italic;color:var(--gold)}
+  .sec-head p{color:var(--muted);margin-top:14px}
+  .sec-mini{text-align:center}
+  .sec-mini .eyebrow{color:var(--gold)}
+  .sec-mini h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,46px);color:var(--green);font-weight:600;margin-top:8px}
+  .sec-mini .divider{margin:16px auto 44px}
+
+  /* Product grid */
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+  .prod-grid.three{grid-template-columns:repeat(3,1fr);max-width:920px;margin:0 auto}
+  .card{background:transparent;display:flex;flex-direction:column;text-align:center}
+  .card .thumb{position:relative;aspect-ratio:1/1;border-radius:200px 200px 10px 10px;overflow:hidden;background:linear-gradient(175deg,var(--rose-1) 0%,var(--rose-2) 100%);display:flex;align-items:center;justify-content:center;transition:.3s}
+  .card:hover .thumb{transform:translateY(-6px);box-shadow:0 26px 44px -26px rgba(84,16,15,.4)}
+  .card .thumb img{width:82%;height:82%;object-fit:contain;transition:.5s}
+  .card:hover .thumb img{transform:scale(1.05)}
+  .badge{position:absolute;top:14px;right:14px;background:#b0201d;color:#fff;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;letter-spacing:.02em;box-shadow:0 6px 14px -4px rgba(176,32,29,.6)}
+  .card h3{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--green);font-weight:600;margin:18px 0 6px}
+  .price{font-size:15px;letter-spacing:.02em}
+  .price .was{color:#b0a49a;text-decoration:line-through;margin-right:8px}
+  .price .now{color:var(--gold);font-weight:600}
+  .card .btn{margin-top:14px;padding:11px 26px;font-size:12px}
+
+  /* Story detail - stacked */
+  .story-stack{max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+  .story-item{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:32px 36px;position:relative}
+  .story-item .num{position:absolute;right:34px;top:26px;font-family:'Cormorant Garamond',serif;font-size:46px;color:#efe1d2;line-height:1}
+  .story-item .tag{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+  .story-item h3{font-family:'Cormorant Garamond',serif;font-size:27px;color:var(--green);font-weight:600;margin-bottom:12px}
+  .story-item p{color:var(--muted);font-size:15px;margin-bottom:10px}
+  .story-item p:last-child{margin-bottom:0}
+  .big-quote{text-align:center;max-width:820px;margin:50px auto 0;background:var(--cream);border-radius:6px;padding:44px 40px;font-family:'Cormorant Garamond',serif;font-size:27px;font-style:italic;color:var(--green);line-height:1.4;border:1px solid var(--line)}
+  .big-quote span{display:block;font-family:'Jost',sans-serif;font-style:normal;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-top:18px}
+
+  /* Ritual + Reviews two-column */
+  .ritual-reviews{display:grid;grid-template-columns:.82fr 1.18fr;gap:56px;align-items:start}
+  .ritual-col .eyebrow{color:var(--gold)}
+  .ritual-col h2{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,4.4vw,54px);color:var(--green);font-weight:600;margin:12px 0 16px}
+  .ritual-col p{color:var(--muted);margin-bottom:28px;max-width:40ch}
+  .reviews-head{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;text-align:center}
+  .reviews-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-height:660px;overflow-y:auto;padding-right:6px}
+  .reviews-grid::-webkit-scrollbar{width:6px}
+  .reviews-grid::-webkit-scrollbar-thumb{background:var(--gold);border-radius:6px}
+  .review{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:22px 20px;display:flex;flex-direction:column}
+  .stars{color:var(--gold);letter-spacing:2px;font-size:14px}
+  .review p{margin:12px 0 16px;color:var(--ink);font-size:14px;flex:1;line-height:1.55}
+  .reviewer{display:flex;align-items:center;gap:12px}
+  .avatar{width:40px;height:40px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;letter-spacing:.05em;font-weight:500;flex:none}
+  .reviewer b{display:block;font-weight:600;font-size:14px}
+  .reviewer small{color:var(--muted);font-size:12px}
+
+  /* FAQ */
+  .faq-wrap{max-width:840px;margin:0 auto}
+  .faq{border-bottom:1px solid var(--line)}
+  .faq button{width:100%;background:none;border:none;cursor:pointer;text-align:left;padding:22px 0;font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--green);display:flex;justify-content:space-between;align-items:center;gap:20px}
+  .faq button span.plus{font-family:'Jost';font-size:26px;color:var(--gold);transition:.3s;flex:none}
+  .faq.open button span.plus{transform:rotate(45deg)}
+  .faq .ans{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .faq.open .ans{max-height:260px}
+  .faq .ans p{padding:0 0 22px;color:var(--muted)}
+
+  /* Instagram */
+  .ig-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:8px}
+  .ig-tile{position:relative;aspect-ratio:1/1;border-radius:6px;overflow:hidden;display:block}
+  .ig-tile img{width:100%;height:100%;object-fit:cover;transition:.5s}
+  .ig-tile:hover img{transform:scale(1.08)}
+  .ig-tile::after{content:"";position:absolute;inset:0;background:rgba(84,16,15,0);transition:.3s}
+  .ig-tile:hover::after{background:rgba(84,16,15,.25)}
+  .ig-cta{text-align:center;margin-top:36px}
+
+  /* Footer */
+  footer.site{background:var(--green);color:#d9cbb8;padding:70px 0 34px}
+  .foot-top{text-align:center;border-bottom:1px solid rgba(255,255,255,.14);padding-bottom:44px}
+  .foot-top img{height:66px;margin:0 auto 16px}
+  .foot-top .tagline{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-2)}
+  .foot-links{display:flex;justify-content:center;gap:34px;flex-wrap:wrap;margin:26px 0}
+  .foot-links a{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#e6d8c6;transition:color .2s}
+  .foot-links a:hover{color:var(--gold-2)}
+  .socials{display:flex;justify-content:center;gap:16px;margin-top:8px}
+  .socials a{width:40px;height:40px;border:1px solid rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.25s}
+  .socials a:hover{background:var(--gold);border-color:var(--gold)}
+  .socials svg{width:18px;height:18px;fill:#e6d8c6}
+  .socials a:hover svg{fill:var(--green)}
+  .foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:40px 0;font-size:13px;letter-spacing:.04em;color:#c9baa6}
+  .foot-grid .r{text-align:right}
+  .foot-policies{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.14);padding-top:28px}
+  .foot-policies a{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#bdae9a}
+  .foot-policies a:hover{color:var(--gold-2)}
+  .copy{text-align:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#9c8d79;margin-top:26px}
+  .copy small{display:block;margin-top:8px;letter-spacing:.1em;text-transform:none;color:#8a7b67}
+
+  @media(max-width:1024px){
+    .prod-grid{grid-template-columns:repeat(2,1fr)}
+    .prod-grid.three{grid-template-columns:repeat(3,1fr)}
+    .story-grid{grid-template-columns:1fr;gap:40px}
+    .story-media img{height:440px}
+    .ritual-reviews{grid-template-columns:1fr;gap:40px}
+    .ig-strip{grid-template-columns:repeat(3,1fr)}
+  }
+  @media(max-width:720px){
+    .desktop-only{display:none !important}
+    .mobile-only{display:inline-flex !important}
+    .nav{grid-template-columns:auto 1fr auto}
+    .brand{justify-content:center}
+    .burger{display:block}
+    .icons{gap:12px}
+    .prod-grid,.prod-grid.three{grid-template-columns:1fr 1fr}
+    .reviews-grid{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr;text-align:center}
+    .foot-grid .r{text-align:center}
+    .ig-strip{grid-template-columns:repeat(2,1fr)}
+    .hero{min-height:88vh}
+  }
+</style>
+</head>
+<body>
+
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="drawer" id="mobileDrawer">
+  <div class="drawer-header">
+    <div class="drawer-title">Menu</div>
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <div class="drawer-links">
+    <a href="https://aurapremiumtea.com/">Aura Tea</a>
+    <a href="https://aurapremiumtea.com/pages/about-us">Our Story</a>
+    <a href="https://aurapremiumtea.com/collections">Products</a>
+    <a href="https://aurapremiumtea.com/pages/get-in-touch">Get In Touch</a>
+  </div>
+</div>
+
+<div class="top-group">
+  <div class="topbar">Unblended Premium Tea</div>
+  <header class="site" id="hdr">
+    <div class="wrap">
+      <div class="nav">
+        <!-- Left Section -->
+        <div class="nav-left">
+          <button class="burger mobile-only" id="burgerBtn" aria-label="Menu">
+            <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+          </button>
+
+          <a class="link desktop-only" href="https://aurapremiumtea.com/">Aura Tea</a>
+          <a class="link desktop-only" href="https://aurapremiumtea.com/pages/about-us">Our Story</a>
+        </div>
+
+        <!-- Center Section (Logo) -->
+        <div class="brand">
+          <a href="https://aurapremiumtea.com/">
+            <img src="https://aurapremiumtea.com/cdn/shop/files/AURA_TEA_LOGO_WEB_1.png?v=1779098823&width=160" alt="AURA PREMIUM TEA">
+          </a>
+        </div>
+
+        <!-- Right Section -->
+        <div class="nav-right">
+          <a class="link desktop-only" href="https://aurapremiumtea.com/collections">Products</a>
+          <a class="link desktop-only" href="https://aurapremiumtea.com/pages/get-in-touch">Get In Touch</a>
+          
+          <div class="icons">
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <video class="hero-bg" autoplay muted loop playsinline>
+    <source src="https://cdn.shopify.com/videos/c/o/v/19a92b93ed0448199f95c74cdd724378.mp4" type="video/mp4">
+  </video>
+  <div class="wrap hero-inner">
+  </div>
+</section>
+
+<section id="shopify-section-template--25022321197343__custom_html_KnCBan" class="shopify-section t4s-section t4s-section-all t4s_tp_cdt t4s-custom-html"><!-- sections/custom-html.liquid -->
+<link href="//aurapremiumtea.com/cdn/shop/t/9/assets/section.css?v=100365795741953099561763631803" rel="stylesheet" type="text/css" media="all">
+<link href="//aurapremiumtea.com/cdn/shop/t/9/assets/general-block.css?v=166346267904873963681763631803" rel="stylesheet" type="text/css" media="all">
+<div class="t4s-section-inner t4s_nt_se_template--25022321197343__custom_html_KnCBan t4s_se_template--25022321197343__custom_html_KnCBan t4s-container-fluid" style="--bg-color: ;--bg-gradient: ;--border-cl: ;--mg-top: ;--mg-right: auto;--mg-bottom: 50px;--mg-left:auto;--pd-top: ;--pd-right: ;--pd-bottom: ;--pd-left: ;--mgtb-top: ;--mgtb-right: auto;--mgtb-bottom: 50px;--mgtb-left: auto;--pdtb-top: ;--pdtb-right: ;--pdtb-bottom: ;--pdtb-left: ;--mgmb-top: ;--mgmb-right: auto;--mgmb-bottom: 30px;--mgmb-left: auto;--pdmb-top: ;--pdmb-right: ;--pdmb-bottom: ;--pdmb-left: ;"><div class="t4s-code__html"><style>
+  .as-wrap { max-width: 720px; margin: 0 auto; padding: 80px 24px; font-family: Georgia, serif; }
+  .as-label { font-family: system-ui,sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #8a6e3e; text-align: center; margin: 0 0 12px; }
+  .as-title { font-size: clamp(28px,4vw,44px); font-weight: 400; color: #1a1208; text-align: center; margin: 0 0 6px; line-height: 1.15; }
+  .as-title em { font-style: italic; color: #8a6e3e; }
+  .as-rule { width: 40px; height: 1.5px; background: #8a6e3e; border: none; margin: 18px auto 56px; }
+  .as-box { border: 1px solid #d6c9b0; padding: 36px 40px; margin-bottom: 24px; position: relative; }
+  .as-box-num { position: absolute; top: -14px; left: 36px; background: #fff; padding: 0 10px; font-family: system-ui,sans-serif; font-size: 11px; letter-spacing: 0.16em; color: #8a6e3e; text-transform: uppercase; }
+  .as-box h3 { font-size: 18px; font-weight: 400; color: #1a1208; margin: 0 0 14px; line-height: 1.3; }
+  .as-box p { font-family: system-ui,sans-serif; font-size: 14.5px; line-height: 1.85; color: #4a3f30; margin: 0; }
+  .as-box p + p { margin-top: 12px; }
+  .as-box.featured { border-color: #8a6e3e; border-width: 1.5px; }
+  .as-divider { display: flex; align-items: center; gap: 16px; margin: 8px 0 32px; }
+  .as-divider span { font-family: system-ui,sans-serif; font-size: 11px; letter-spacing: 0.14em; color: #b8a48a; text-transform: uppercase; white-space: nowrap; }
+  .as-divider::before, .as-divider::after { content:''; flex:1; height: 0.5px; background: #d6c9b0; }
+  .as-quote { text-align: center; padding: 44px 32px; }
+  .as-quote blockquote { font-size: clamp(18px,2.5vw,26px); font-weight: 400; color: #1a1208; line-height: 1.6; margin: 0 0 20px; font-style: italic; }
+  .as-quote cite { font-family: system-ui,sans-serif; font-size: 12px; letter-spacing: 0.16em; color: #8a6e3e; text-transform: uppercase; font-style: normal; }
+</style>
+
+<div class="as-wrap">
+  <p class="as-label">Our Story</p>
+  <h2 class="as-title">Passion, Purity &amp; <em>Perfection</em>
+</h2>
+  <hr class="as-rule">
+
+  <div class="as-box">
+    <span class="as-box-num">Origin</span>
+    <h3>Born in the Highlands of Kenya</h3>
+    <p>High above sea level, where morning mist lingers over rolling green hills, lies the origin of every Aura leaf. Kenya's highlands offer some of the world's most prized tea-growing conditions — rich volcanic soil, consistent rainfall, and cool altitude air that slows the growth of the leaf, concentrating its flavour.</p>
+    <p>Our premium A-grade leaves are handpicked with care, choosing only the finest two leaves and a bud. They are unblended and entirely free from artificial additives, colouring, or preservatives.</p>
+  </div>
+
+  <div class="as-divider"><span> 1960</span></div>
+
+  <div class="as-box featured">
+    <span class="as-box-num">Heritage</span>
+    <h3>Over Six Decades of Craft</h3>
+    <p>Aura Premium Tea began in 1960 with a single, quiet conviction — that the finest tea deserved to be shared honestly, without compromise. What started as a family passion rooted in the love of nature grew, batch by batch, into a name trusted by tea lovers across the world.</p>
+    <p>Every harvest honours that founding promise. No shortcuts. No blending to mask imperfections. Just the natural strength, rich aroma, and timeless character of leaves that carry the full story of the land in every steep.</p>
+  </div>
+
+  <div class="as-divider"><span>Now in Pakistan</span></div>
+
+  <div class="as-box">
+    <span class="as-box-num">Culture</span>
+    <h3>Tea is Pakistan's Language of Connection</h3>
+    <p>In Pakistan, tea is not simply a beverage. It is how mornings begin, how guests are welcomed, how conversations deepen, and how comfort is offered without words. It is woven into the fabric of daily life — from the chai dhaba on a busy corner to the quiet cup shared between family at dusk.</p>
+    <p>Aura Tea arrives in Pakistan not as a foreign product, but as a kindred spirit. A tea worthy of this culture.</p>
+  </div>
+
+  <div class="as-quote">
+    <blockquote>"Aura Premium Tea is not just tea. It is a story of passion, purity, and perfection — a gift of royalty in every cup."</blockquote>
+    <cite>— Aura Premium Tea</cite>
+  </div>
+</div></div></div></section>
+
+<!-- VIDEO BAND -->
+<section class="video-band">
+  <div class="wrap">
+    <div class="eyebrow">Now Playing</div>
+    <h2 class="serif">The Aura That <em>Hits Different</em></h2>
+    <p>Pure. Bold. Made for a generation that chooses better.</p>
+    <div class="video-frame">
+      <video autoplay muted loop playsinline poster="https://cdn.shopify.com/s/files/1/0900/3158/7615/files/702659075_18101546195103527_9080362627445793966_n.jpg?v=1781199930">
+        <source src="https://cdn.shopify.com/videos/c/o/v/1efe0c81495b4f0ab768764ee3e5298c.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- PREMIUM PACKAGES -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-mini">
+      <div class="eyebrow">Shop The Collection</div>
+      <h2 class="serif">Premium Packages</h2>
+      <hr class="divider center">
+    </div>
+    <div class="prod-grid" style="justify-content:center">
+      <div class="card">
+        <a class="thumb" href="https://aurapremiumtea.com/products/free-sample">
+          <img src="aurasampling2.jpeg" alt="Free Sample">
+        </a>
+        <h3><a href="https://aurapremiumtea.com/products/free-sample">Free Sample</a></h3>
+        <div class="price"><span class="now">Free</span></div>
+        <a class="btn btn-outline" href="https://aurapremiumtea.com/products/free-sample">Get Free Sample</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="shopify-section-template--25022321197343__custom_html_AbeEjA" class="shopify-section t4s-section t4s-section-all t4s_tp_cdt t4s-custom-html"><!-- sections/custom-html.liquid -->
+<link href="//aurapremiumtea.com/cdn/shop/t/9/assets/section.css?v=100365795741953099561763631803" rel="stylesheet" type="text/css" media="all">
+<link href="//aurapremiumtea.com/cdn/shop/t/9/assets/general-block.css?v=166346267904873963681763631803" rel="stylesheet" type="text/css" media="all">
+<div class="t4s-section-inner t4s_nt_se_template--25022321197343__custom_html_AbeEjA t4s_se_template--25022321197343__custom_html_AbeEjA t4s-container-fluid" style="--bg-color: ;--bg-gradient: ;--border-cl: ;--mg-top: ;--mg-right: auto;--mg-bottom: 50px;--mg-left:auto;--pd-top: ;--pd-right: ;--pd-bottom: ;--pd-left: ;--mgtb-top: ;--mgtb-right: auto;--mgtb-bottom: 50px;--mgtb-left: auto;--pdtb-top: ;--pdtb-right: ;--pdtb-bottom: ;--pdtb-left: ;--mgmb-top: ;--mgmb-right: auto;--mgmb-bottom: 30px;--mgmb-left: auto;--pdmb-top: ;--pdmb-right: ;--pdmb-bottom: ;--pdmb-left: ;"><div class="t4s-code__html"><style>
+  .aura-story { background:#faf7f2; padding: 64px 48px; display:grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; font-family: Georgia, 'Times New Roman', serif; }
+  .aura-story .eyebrow { font-family: system-ui, sans-serif; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #8a6e3e; margin: 0 0 18px; }
+  .aura-story h2 { font-size: 36px; font-weight: 400; color: #2c2416; margin: 0 0 10px; line-height: 1.2; }
+  .aura-story .rule { width: 48px; height: 1.5px; background: #8a6e3e; margin: 0 0 28px; border: none; }
+  .aura-story p { font-size: 15px; line-height: 1.9; color: #4a3f30; margin: 0 0 18px; }
+  .aura-story .highlight { font-style: italic; font-size: 16.5px; color: #2c2416; border-left: 2px solid #8a6e3e; padding-left: 18px; margin: 28px 0; line-height: 1.8; }
+  .aura-story .image-wrap { width: 100%; aspect-ratio: 4/5; overflow: hidden; }
+  .aura-story .image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .aura-story .image-col { position: relative; }
+  .aura-story .tag-box { position: absolute; bottom: -18px; left: -18px; background: #2c2416; color: #f5ead8; padding: 18px 22px; }
+  .aura-story .tag-box span { display: block; font-size: 28px; font-weight: 500; line-height: 1; }
+  .aura-story .tag-box small { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; margin-top: 4px; display: block; }
+  @media (max-width: 768px) {
+    .aura-story { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
+    .aura-story .image-col { order: -1; }
+  }
+</style>
+
+<section class="aura-story">
+  <div class="text-col">
+    <p class="eyebrow">Our Story</p>
+    <h2>Handpicked.<br>Unblended.<br>Unforgettable.</h2>
+    <hr class="rule">
+    <p>From the lush highlands of Kenya, our premium leaves are handpicked with care, unblended, and free from artificial additives. Every batch carries the natural strength, rich aroma, and timeless tradition of the farms where it begins.</p>
+    <blockquote class="highlight">Today, Aura Tea proudly arrives in Pakistan — a place where tea is more than a drink. It is culture, comfort, and connection.</blockquote>
+    <p>With each sip, Aura Tea brings the warmth of heritage, the purity of nature, and the feeling of something truly special.</p>
+    <p>Aura Premium Tea is not just tea. It is a story of passion, purity, and perfection — a gift of royalty in every cup.</p>
+  </div>
+  <div class="image-col">
+    <div class="image-wrap">
+      <img src="https://cdn.shopify.com/s/files/1/0900/3158/7615/files/702659075_18101546195103527_9080362627445793966_n.jpg?v=1781199930" alt="Aura Tea highlands">
+    </div>
+    <div class="tag-box">
+      <span>1960</span>
+      <small> Kenya</small>
+    </div>
+  </div>
+</section></div></div></section>
+
+<!-- RITUAL + REVIEWS -->
+<section class="section">
+  <div class="wrap ritual-reviews">
+    <div class="ritual-col">
+      <div class="eyebrow">The Aura Experience</div>
+      <h2>Sip the Ritual.</h2>
+      <p>Discover our premium loose-leaf blends, crafted for unrivaled depth, exceptional aroma, and a truly calming daily ritual.</p>
+      <a class="btn btn-solid" href="https://aurapremiumtea.com/collections/all">Explore Premium Packages</a>
+    </div>
+    <div class="reviews-col">
+      <div class="reviews-head">Loved Across Pakistan</div>
+      <div class="reviews-grid" id="reviews"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Got Questions?</div>
+      <h2 class="serif">Frequently Asked Questions</h2>
+      <p>Everything you need to know about Aura Premium Tea, our delivery, and how to get started.</p>
+    </div>
+    <div class="faq-wrap" id="faq"></div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">@aurateaofficial</div>
+      <h2 class="serif">Follow us on Instagram</h2>
+      <p>Join our community for daily inspiration and a closer look at our creations.</p>
+    </div>
+    <div class="ig-strip">
+      <a class="ig-tile" href="https://www.instagram.com/aurateaofficial?igsh=eGg0ODlhOGpsZ2R4"><img src="https://cdn.shopify.com/s/files/1/0900/3158/7615/files/702659075_18101546195103527_9080362627445793966_n.jpg?v=1781199930" alt="Aura on Instagram"></a>
+      <a class="ig-tile" href="https://www.instagram.com/aurateaofficial?igsh=eGg0ODlhOGpsZ2R4"><img src="https://aurapremiumtea.com/cdn/shop/files/auraweb2-Recovered_a44a658b-fa26-43c5-9b4e-3a80f3e2c2c0.webp?v=1780923180&width=600" alt="Aura on Instagram"></a>
+      <a class="ig-tile" href="https://www.instagram.com/aurateaofficial?igsh=eGg0ODlhOGpsZ2R4"><img src="https://aurapremiumtea.com/cdn/shop/files/Artboard1.jpg_2.jpg?v=1781586490&width=600" alt="Aura on Instagram"></a>
+      <a class="ig-tile" href="https://www.instagram.com/aurateaofficial?igsh=eGg0ODlhOGpsZ2R4"><img src="https://aurapremiumtea.com/cdn/shop/files/auraweb3copy_cf80a2e7-f32a-4496-9267-3fd88776f6df.webp?v=1781235926&width=600" alt="Aura on Instagram"></a>
+      <a class="ig-tile" href="https://www.instagram.com/aurateaofficial?igsh=eGg0ODlhOGpsZ2R4"><img src="https://aurapremiumtea.com/cdn/shop/files/auraweb4copy_68282100-e734-48a5-b84c-6fa381534e3c.webp?v=1781235926&width=600" alt="Aura on Instagram"></a>
+    </div>
+    <div class="ig-cta"><a class="btn btn-outline" href="https://www.instagram.com/aurateaofficial?igsh=eGg0ODlhOGpsZ2R4">Visit Instagram</a></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-top">
+      <img src="https://aurapremiumtea.com/cdn/shop/files/AURA_TEA_LOGO_WEB_1.png?v=1779098823&width=160" alt="AURA PREMIUM TEA">
+      <div class="tagline">A Way of Royalty in Every Sip</div>
+      <div class="foot-links">
+        <a href="https://aurapremiumtea.com/pages/about-us">Our Story</a>
+        <a href="https://aurapremiumtea.com/collections/">Shop Tea</a>
+        <a href="https://aurapremiumtea.com/pages/contact">Contact Us</a>
+        <a href="https://aurapremiumtea.com/blogs/news">Blog</a>
+      </div>
+      <div class="socials">
+        <a href="https://www.instagram.com/aurateaofficial?igsh=eGg0ODlhOGpsZ2R4" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.2A6.6 6.6 0 1012 18.6 6.6 6.6 0 0012 5.4zm0 10.9a4.3 4.3 0 110-8.6 4.3 4.3 0 010 8.6zM18.9 5.1a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg></a>
+        <a href="https://www.facebook.com/share/1FfKRH6gJY/?mibextid=wwXIfr" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.6-1.5h1.6V3.6c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H8.2V13h2.6v8h2.7z"/></svg></a>
+        <a href="https://www.tiktok.com/@aura.tea?_r=1&_t=ZS-97Atw1llfjV" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.6 5.8c-1-.7-1.6-1.8-1.8-3H12v11.4c0 1.3-1 2.3-2.3 2.3s-2.3-1-2.3-2.3 1-2.3 2.3-2.3c.3 0 .5 0 .8.1V9.3c-.3 0-.5-.1-.8-.1-2.9 0-5.2 2.3-5.2 5.2S6.8 19.6 9.7 19.6s5.2-2.3 5.2-5.2V8.7c1 .7 2.3 1.2 3.6 1.2V7c-.7 0-1.4-.2-1.9-.5v-.7z"/></svg></a>
+        <a href="https://wa.me/923098665556" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.8.9.9-2.7-.2-.3A8 8 0 1112 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7.9-.1.1-.3.2-.5 0-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4 0-.2 0-.3-.1-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.4c.1.2 1.6 2.5 3.9 3.5.5.2 1 .4 1.3.5.6.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.6-.4z"/></svg></a>
+      </div>
+    </div>
+    <div class="foot-grid">
+      <div>+92 309 9077880<br>Info.auratea@gmail.com<br>Factory: Plot 96, Street 7, I-10/3, Industrial Area, Islamabad</div>
+      <div class="r">Monday to Friday<br>9:00 AM – 6:00 PM<br>Est. 1960 · Highlands of Kenya</div>
+    </div>
+    <div class="foot-policies">
+      <a href="https://aurapremiumtea.com/pages/aura-premium-tea-policies#privacy-policy">Privacy Policy</a>
+      <a href="https://aurapremiumtea.com/pages/aura-premium-tea-policies#terms-of-service">Terms of Service</a>
+      <a href="https://aurapremiumtea.com/pages/aura-premium-tea-policies#shipping-policy">Shipping Policy</a>
+      <a href="https://aurapremiumtea.com/pages/aura-premium-tea-policies#refund-policy">Refund Policy</a>
+      <a href="https://aurapremiumtea.com/pages/contact">Contact Us</a>
+    </div>
+    <div class="copy">
+      © 2026 Aura Premium Tea. All Rights Reserved.
+      <small>Premium A-Grade Loose-Leaf Tea · Sourced from the Highlands of Kenya · Est. 1960</small>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sticky header color switch
+  const hdr = document.getElementById('hdr');
+  const onScroll = () => hdr.classList.toggle('scrolled', window.scrollY > 40);
+  window.addEventListener('scroll', onScroll); onScroll();
+
+  // Reviews
+  const reviews = [
+    {t:"Aura chai has completely replaced my morning routine. The aroma alone is something extraordinary, pure and rich.",i:"FM",n:"Fatima Malik",c:"Lahore"},
+    {t:"Maine kabhi aisi chai nahi pi. Sach mein yeh premium quality hai, har ghoot mein fark nazar aata hai.",i:"AR",n:"Ahmed Raza",c:"Karachi"},
+    {t:"We serve Aura to our guests and they always ask for the brand. It has become a staple in our home, Alhamdulillah.",i:"ZS",n:"Zainab Siddiqui",c:"Islamabad"},
+    {t:"Doodh patti banaiye Aura ki pattiyon se, bas phir daikhtay jaiye. Every cup is a blessing.",i:"UC",n:"Usman Chaudhry",c:"Faisalabad"},
+    {t:"The fragrance when the tea steeps is unlike anything I have experienced. Genuinely world-class quality in Pakistan.",i:"HB",n:"Hina Baig",c:"Multan"},
+    {t:"Aura ki khushboo ghar mein phailti hai toh sab samajh jaate hain chai tayyar ho rahi hai. Perfect blend!",i:"BH",n:"Bilal Hussain",c:"Rawalpindi"},
+    {t:"Meri saas ne bola yeh chai Kenya se aati hai, jab mujhe pata chala quality samajh aayi. Mashallah itni achi hai.",i:"AT",n:"Asma Tariq",c:"Gujranwala"},
+    {t:"I bought a gift pack for Eid and everyone loved it. Premium packaging, premium taste, Aura delivers on every promise.",i:"HS",n:"Hamza Sheikh",c:"Lahore"},
+    {t:"Subah ki chai Aura ke baghair ab adhoori lagti hai. Ghar walon ne bhi yahi pasand kiya hai ab.",i:"RB",n:"Rukhsana Begum",c:"Peshawar"},
+    {t:"The color, strength, and taste, everything is perfectly balanced. No artificial taste whatsoever. 100% recommended.",i:"TM",n:"Tariq Mehmood",c:"Sialkot"},
+    {t:"Aura Tea ne meri chai ki definition badal di. Ab koi aur brand achha hi nahi lagta, yeh ek khas cheez hai.",i:"NI",n:"Nadia Iqbal",c:"Hyderabad"},
+    {t:"Daftar mein sab log poochte hain kaunsi chai bana rahe ho, yahi Aura wali. Sab ko pasand aati hai.",i:"SH",n:"Saad ul Haq",c:"Quetta"},
+    {t:"Premium loose-leaf at a fair price. The Kenya origin makes all the difference, you can actually taste the freshness.",i:"SN",n:"Sobia Nawaz",c:"Lahore"},
+    {t:"Yeh chai waqai royalty wali feel deti hai. Ghar mein mehman aa jaye toh Aura serve karo, sab impressed ho jaate hain.",i:"IB",n:"Imran Butt",c:"Karachi"},
+    {t:"I was skeptical at first but one cup and I was convinced. No bitterness, only smooth richness, Aura is my forever brand.",i:"MR",n:"Madiha Rehman",c:"Abbottabad"},
+    {t:"Bhai ne gift kiya tha, ab mai khud khareedta hoon. Quality itni achi hai ke doosri chai pehle jaise achhi nahi lagti.",i:"KA",n:"Kashif Ali",c:"Multan"},
+    {t:"The story of Aura, 1960, Kenya, no additives, shows in every sip. You feel the authenticity and care behind it.",i:"AZ",n:"Ambreen Zahid",c:"Islamabad"},
+    {t:"Honestly the best chai I've had in Pakistan. The leaves are proper quality and the brew is outstanding every time.",i:"JH",n:"Jawad Hassan",c:"Lahore"}
+  ];
+  document.getElementById('reviews').innerHTML = reviews.map(r=>`
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p>"${r.t}"</p>
+      <div class="reviewer"><div class="avatar">${r.i}</div><div><b>${r.n}</b><small>${r.c}</small></div></div>
+    </div>`).join('');
+
+  // FAQ
+  const faqs = [
+    {q:"What makes Aura Premium Tea different?",a:"Aura Premium Tea is made with premium unblended tea leaves sourced from Kenya. Unlike blended teas, every cup delivers a naturally rich taste, strong aroma, and consistent quality."},
+    {q:"What does \"unblended tea\" mean?",a:"Unblended tea is made from carefully selected tea leaves without mixing different grades or fillers, resulting in a purer, richer, and more authentic tea experience."},
+    {q:"Is Aura Tea suitable for everyday use?",a:"Yes. It's crafted to make every daily cup taste premium while maintaining consistent quality."},
+    {q:"Does Aura Tea make strong karak chai?",a:"Yes. Aura is specially selected to deliver a rich, full-bodied karak chai with a strong aroma."},
+    {q:"Can I make both milk tea and black tea with Aura?",a:"Absolutely. Aura works beautifully for both milk tea (chai) and black tea."},
+    {q:"Where do you deliver?",a:"We currently deliver across Pakistan. Delivery timelines may vary by location."},
+    {q:"How can I place an order?",a:"You can order directly through our website."},
+    {q:"How do I request a free sample?",a:"Simply fill out the Free Sample form on our website. If your area is eligible, we'll send a complimentary sample."}
+  ];
+  document.getElementById('faq').innerHTML = faqs.map(f=>`
+    <div class="faq">
+      <button onclick="this.parentElement.classList.toggle('open')"><span>${f.q}</span><span class="plus">+</span></button>
+      <div class="ans"><p>${f.a}</p></div>
+    </div>`).join('');
+
+  // Mobile Slide Drawer Toggle Logic
+  const burgerBtn = document.getElementById('burgerBtn');
+  const drawerClose = document.getElementById('drawerClose');
+  const drawerOverlay = document.getElementById('drawerOverlay');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+
+  const openDrawer = () => {
+    mobileDrawer.classList.add('open');
+    drawerOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden'; // Disable scroll on body
+  };
+
+  const closeDrawer = () => {
+    mobileDrawer.classList.remove('open');
+    drawerOverlay.classList.remove('open');
+    document.body.style.overflow = ''; // Restore scroll
+  };
+
+  if(burgerBtn) burgerBtn.addEventListener('click', openDrawer);
+  if(drawerClose) drawerClose.addEventListener('click', closeDrawer);
+  if(drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+</script>
+</body>
+</html>
