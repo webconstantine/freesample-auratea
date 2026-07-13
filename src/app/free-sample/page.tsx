@@ -43,6 +43,7 @@ export default function FreeSample() {
   const [consent2, setConsent2] = useState(false)
   const [errors, setErrors] = useState<Errors>({})
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const toggleMatter = (val: string) => {
     setMattersMost((prev) =>
@@ -53,8 +54,15 @@ export default function FreeSample() {
   const validate = (): boolean => {
     const errs: Errors = {}
     if (!name.trim()) errs.name = "Please enter your full name."
-    if (!phone.trim()) errs.phone = "Please enter a valid Pakistani mobile number."
-    else if (!/^0?3[0-9]{9}$/.test(phone.replace(/\s/g, ""))) errs.phone = "Please enter a valid Pakistani mobile number."
+    
+    // Clean and validate Pakistani phone number (must be 10 digits starting with 3 after stripping prefix)
+    const cleanPhone = phone.replace(/\D/g, "")
+    if (!phone.trim()) {
+      errs.phone = "Please enter your WhatsApp mobile number."
+    } else if (!/^3[0-9]{9}$/.test(cleanPhone)) {
+      errs.phone = "Please enter a valid 10-digit number starting with 3 (e.g., 300 1234567)."
+    }
+
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.email = "Please enter a valid email address."
     if (!city) errs.city = "Please select your city."
     if (!address.trim()) errs.address = "Please enter your complete delivery address."
@@ -63,19 +71,44 @@ export default function FreeSample() {
     if (mattersMost.length === 0) errs.mattersMost = "Please select 1 or 2 options."
     if (!consent1) errs.consent1 = "You must agree to proceed."
     if (!consent2) errs.consent2 = "You must agree to proceed."
+    
     setErrors(errs)
-    return Object.keys(errs).length === 0
+
+    if (Object.keys(errs).length > 0) {
+      const errorKeys = ["name", "phone", "email", "city", "address", "buyFrom", "currentBrand", "mattersMost", "consent1", "consent2"]
+      for (const key of errorKeys) {
+        if (errs[key]) {
+          const el = document.getElementById(`f-${key}`)
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth", block: "center" })
+            const input = el.querySelector("input, select, textarea")
+            if (input) {
+              (input as HTMLElement).focus()
+            }
+            break
+          }
+        }
+      }
+      return false
+    }
+    return true
   }
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     if (!validate()) return
 
+    setIsSubmitting(true)
+
     const ref = "FS-" + Date.now().toString(36).toUpperCase()
+
+    // Format phone number to include +92 prefix for database and Google Sheets
+    const cleanPhone = phone.replace(/\D/g, "")
+    const formattedPhone = `+92 ${cleanPhone.slice(0, 3)} ${cleanPhone.slice(3)}`
 
     const payload = {
       name: name.trim(),
-      phone: phone.trim(),
+      phone: formattedPhone,
       email: email.trim(),
       city,
       pack,
@@ -96,7 +129,7 @@ export default function FreeSample() {
       const params = new URLSearchParams()
       params.set("Reference", ref)
       params.set("Name", name.trim())
-      params.set("Phone", phone.trim())
+      params.set("Phone", formattedPhone)
       params.set("Email", email.trim())
       params.set("City", city)
       params.set("Pack", pack)
@@ -112,6 +145,7 @@ export default function FreeSample() {
       console.error("Google Sheets save error:", err)
     }
 
+    setIsSubmitting(false)
     setSubmitted(true)
   }
 
@@ -152,7 +186,29 @@ export default function FreeSample() {
 
             <div className={`field${errors.phone ? " has-error" : ""}`} id="f-phone">
               <label htmlFor="inPhone">WhatsApp Number <em>*</em></label>
-              <input type="tel" id="inPhone" placeholder="03XX XXXXXXX" autoComplete="tel" value={phone} onChange={(e) => setPhone(e.target.value)} />
+              <div className="phone-input-wrapper">
+                <span className="phone-prefix">+92</span>
+                <input
+                  type="tel"
+                  id="inPhone"
+                  placeholder="3XX XXXXXXX"
+                  autoComplete="tel"
+                  value={phone}
+                  onChange={(e) => {
+                    let val = e.target.value;
+                    if (val.startsWith("+92")) {
+                      val = val.slice(3);
+                    } else if (val.startsWith("92") && val.length > 9) {
+                      val = val.slice(2);
+                    }
+                    if (val.startsWith("0")) {
+                      val = val.slice(1);
+                    }
+                    setPhone(val);
+                  }}
+                />
+              </div>
+              <span className="help-text">Type your 10-digit number starting with 3 (e.g., 300 1234567)</span>
               <span className="err">{errors.phone}</span>
             </div>
 
@@ -231,7 +287,18 @@ export default function FreeSample() {
               </label>
             </div>
 
-            <button type="submit" className="btn btn-gold btn-block">Reserve My Free Sample</button>
+            <button type="submit" className="btn btn-gold btn-block" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <span className="submitting-state">
+                  <svg className="spinner" viewBox="0 0 50 50">
+                    <circle className="path" cx="25" cy="25" r="20" fill="none" strokeWidth="5"></circle>
+                  </svg>
+                  Processing...
+                </span>
+              ) : (
+                "Reserve My Free Sample"
+              )}
+            </button>
             <p className="form-note">One sample per household, while stock lasts</p>
           </form>
         </div>
@@ -405,6 +472,76 @@ export default function FreeSample() {
           font-size: 12px;
           color: #999;
           margin-top: 16px;
+        }
+        .phone-input-wrapper {
+          display: flex;
+          align-items: center;
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          background: #fff;
+          overflow: hidden;
+          transition: border-color 0.25s;
+        }
+        .phone-input-wrapper:focus-within {
+          border-color: #b48f42;
+        }
+        .field.has-error .phone-input-wrapper {
+          border-color: #b0201d;
+        }
+        .phone-prefix {
+          padding: 12px 14px;
+          background: #f0eae1;
+          color: #333;
+          font-size: 14px;
+          font-weight: 600;
+          border-right: 1px solid #ddd;
+          user-select: none;
+        }
+        .phone-input-wrapper input {
+          border: none !important;
+          outline: none !important;
+          flex: 1;
+          padding: 12px 14px;
+          font-size: 14px;
+        }
+        .help-text {
+          display: block;
+          font-size: 11px;
+          color: #888;
+          margin-top: 4px;
+        }
+        .submitting-state {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+        }
+        .spinner {
+          animation: rotate 2s linear infinite;
+          width: 20px;
+          height: 20px;
+        }
+        .spinner .path {
+          stroke: #fff;
+          stroke-linecap: round;
+          animation: dash 1.5s ease-in-out infinite;
+        }
+        @keyframes rotate {
+          100% { transform: rotate(360deg); }
+        }
+        @keyframes dash {
+          0% {
+            stroke-dasharray: 1, 150;
+            stroke-dashoffset: 0;
+          }
+          50% {
+            stroke-dasharray: 90, 150;
+            stroke-dashoffset: -35;
+          }
+          100% {
+            stroke-dasharray: 90, 150;
+            stroke-dashoffset: -124;
+          }
         }
         @media (max-width: 600px) {
           .sample-form-section { padding: 120px 16px 70px; }
