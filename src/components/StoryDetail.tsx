@@ -33,7 +33,7 @@ export default function StoryDetail() {
             </div>
             <div className="image-col">
               <div className="image-wrap">
-                <img src="https://cdn.shopify.com/s/files/1/0900/3158/7615/files/702659075_18101546195103527_9080362627445793966_n.jpg?v=1781199930" alt="Aura Tea highlands" />
+                <img src="/products/freesample.jpeg" alt="Aura Tea highlands" />
               </div>
               <div className="tag-box">
                 <span>1960</span>
