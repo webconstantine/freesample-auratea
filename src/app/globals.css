@@ -195,8 +195,8 @@ header.site{background:var(--cream);border-bottom:1px solid var(--line);transiti
 
 .custom-prod-card .thumb {
   position: relative;
-  aspect-ratio: 1 / 1.4;
-  border-radius: 160px 160px 0 0 !important;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px !important;
   overflow: hidden;
   display: flex;
   align-items: center;

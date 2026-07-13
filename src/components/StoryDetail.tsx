@@ -77,7 +77,7 @@ export default function StoryDetail() {
 
             <div className="image-col">
               <div className="image-wrap">
-                <img src="/products/p1.png" alt="Aura Premium Tea Free Sample" />
+                <img src="/pimg.jpeg" alt="Aura Premium Tea Free Sample" />
               </div>
               <div className="tag-box">
                 <span>FREE</span>

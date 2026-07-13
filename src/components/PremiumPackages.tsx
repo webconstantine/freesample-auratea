@@ -10,7 +10,7 @@ export default function PremiumPackages() {
         <div className="prod-single">
           <div className="card custom-prod-card">
             <a className="thumb" href="/free-sample">
-              <img src="/products/aurasampling2.jpeg" alt="Free Sample" />
+              <img src="/products/p1.png" alt="Free Sample" />
             </a>
             <h3 className="prod-title">
               <a href="/free-sample">Free Sample</a>
