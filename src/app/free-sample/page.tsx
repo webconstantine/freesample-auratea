@@ -17,10 +17,10 @@ const buyOptions = [
 ]
 
 const matterOptions = [
-  "Strong taste",
+ "Price",
   "Aroma",
   "Colour",
-  "Price",
+  "Strong taste",
   "Brand reputation",
   "Purity",
   "Health",
@@ -34,7 +34,7 @@ export default function FreeSample() {
   const [phone, setPhone] = useState("")
   const [email, setEmail] = useState("")
   const [city, setCity] = useState("")
-  const [pack, setPack] = useState("Daily Aura")
+  const [pack, setPack] = useState("Mini Aura")
   const [address, setAddress] = useState("")
   const [buyFrom, setBuyFrom] = useState("")
   const [currentBrand, setCurrentBrand] = useState("")
